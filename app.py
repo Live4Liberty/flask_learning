@@ -42,6 +42,11 @@ def hello_totoro():
     return "<h1>Hello Totoro!</h1><img src='http://helloflask.com/totoro.gif'>"
 
 
+@app.route("/ali")
+def ali():
+    return "<h1>my alilyun host</h1><img src=url_for('static', filename='aliyun.png')>"
+
+
 @app.route('/test')
 def test_url_for():
     # 下面是一些调用示例（请在命令行窗口查看输出的 URL）：

@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>test template</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/avatar.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
 </head>
 <body>
-    <h1>
+    <h2>
+        <img class="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
         {{ name }}'s watchlist
-    </h1>
+    </h2>
     <p>
         {{ movies|length }} moives
     </p>
-    <ul>
+    <ul class="movie-list">
         {% for movie in movies %}
         <li>
             {{ movie.title }} - {{ movie.year }}
         </li>
         {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
+        <img class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
+
     </ul>
     <footer>
         <small>&copy;
