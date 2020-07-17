@@ -1,8 +1,5 @@
-#!/Users/dianchu/opt/anaconda3/envs/flask_learning/bin/python
-# -*- coding:utf-8 -*-
-
 from flask import Flask
-from flask import escape, url_for
+from flask import escape, url_for, redirect, render_template
 
 app = Flask(__name__)
 
@@ -13,6 +10,21 @@ def hello():
     return "<h1>Welcome to My Watchlist!</h1>"
 
 
+@app.route("/mises")
+def mises():
+    return "<h1>Welcome to My Watchlist!</h1>", 302, {'location': 'https://mises.org'}
+
+
+@app.route("/austrian")
+def austrian():
+    return redirect('https://mises.com')
+
+
+@app.route("/hayek")
+def hayek():
+    return redirect(url_for('mises'))
+
+# URL内定义变量，规避恶意代码
 @app.route("/user/<name>")
 def user_page(name):
     return "User: %s" % escape(name)
@@ -43,6 +55,20 @@ def test_url_for():
     return 'Test page'
 
 
-if __name__ == "__man__":
+name = 'Hubery'
+movies = [
+    {'title': 'Dead Poets Society', 'year': '1989'}
+    , {'title': 'A Perfect World', 'year': '1993'}
+    , {'title': 'The Pork of Music', 'year': '2012'}
+]
+
+
+@app.route('/index')
+def index():
+    return render_template('index.html', name=name, movies=movies)
+
+
+if __name__ == "__main__":
     app.run()
+
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test template</title>
+</head>
+<body>
+    <h1>
+        {{ name }}'s watchlist
+    </h1>
+    <p>
+        {{ movies|length }} moives
+    </p>
+    <ul>
+        {% for movie in movies %}
+        <li>
+            {{ movie.title }} - {{ movie.year }}
+        </li>
+        {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
+    </ul>
+    <footer>
+        <small>&copy;
+            2020 <a href="https://mises.org">imdb.com</a>
+        </small>
+    </footer>
+</body>
+</html>
