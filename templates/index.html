@@ -1,32 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>test template</title>
-    <link rel="icon" href="{{ url_for('static', filename='images/avatar.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
-</head>
-<body>
-    <h2>
-        <img class="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
-        {{ user.name }}'s watchlist
-    </h2>
-    <p>
-        {{ movies|length }} moives
-    </p>
-    <ul class="movie-list">
-        {% for movie in movies %}
-        <li>
-            {{ movie.title }} - {{ movie.year }}
-        </li>
-        {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
-        <img class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
+{% extends 'base.html' %}
 
-    </ul>
-    <footer>
-        <small>&copy;
-            2020 <a href="https://mises.org">imdb.com</a>
-        </small>
-    </footer>
-</body>
-</html>
+{% block content %}
+<p>{{ movies|length }} Titles</p>
+<ul class="movie-list">
+    {% for movie in movies %}
+    <li>{{ movie.title }} - {{ movie.year }}
+        <span class="float-right">
+            <a class="imdb" href="https://www.imdb.com/find?q={{ movie.title }}" target="_blank" title="Find this movie on IMDb">IMDb</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+<img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}" title="to~to~ro~">
+{% endblock %}
